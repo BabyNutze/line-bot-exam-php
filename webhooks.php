@@ -13,10 +13,10 @@ require "vendor/autoload.php";
    //รับ id ของผู้ใช้
    $id = $arrayJson['events'][0]['source']['userId'];
    #ตัวอย่าง Message Type "Text + Sticker"
-   if($message == "สวัสดี"){
+   if($message == "สวัสดี" || $message == "สวัสดีครับ" || $message == "สวัสดีครับ"){
       $arrayPostData['to'] = $id;
       $arrayPostData['messages'][0]['type'] = "text";
-      $arrayPostData['messages'][0]['text'] = "สวัสดีจ้าาา";
+      $arrayPostData['messages'][0]['text'] = "ไลน์บอทสภาวิศวกรขอบคุณที่แอดมาครับ";
       $arrayPostData['messages'][1]['type'] = "sticker";
       $arrayPostData['messages'][1]['packageId'] = "2";
       $arrayPostData['messages'][1]['stickerId'] = "34";
