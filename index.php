@@ -19,8 +19,27 @@ $text = $event['source']['userId'];
 $replyToken = $event['replyToken'];
 // Build message to reply back
 $messages = [
-'type' => 'text',
-'text' => $text
+  "type": "flex",
+  "altText": "This is a Flex Message",
+  "contents": {
+   "type": "bubble",
+   "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+     {
+      "type": "button",
+      "style": "primary",
+      "height": "sm",
+      "action": {
+       "type": "uri",
+       "label": "Go to homepage",
+       "uri": "http://www.coe.or.th/coe-2/main/coeMain.php"
+      }
+     }
+    ]
+   }
+  }
 ];
 // Make a POST Request to Messaging API to reply to sender
 $url = 'https://api.line.me/v2/bot/message/reply';
@@ -43,4 +62,3 @@ print $result . "\r\n";
 }
 }
 }
-echo "OK";
