@@ -26,10 +26,18 @@ require "vendor/autoload.php";
 			 for($i=1;$i<=10;$i++){
 					$arrayPostData['to'] = $id;
 					$arrayPostData['messages'][0]['type'] = "text";
-					$arrayPostData['messages'][0]['text'] = $i;
+					$arrayPostData['messages'][0]['text'] = "ยินดีครับ";
 					pushMsg($arrayHeader,$arrayPostData);
 			 }
 		}
+		if($message == "ขอบคุณครับ" || $message == "ขอบคุณค่ะ"){
+				for($i=1;$i<=10;$i++){
+					 $arrayPostData['to'] = $id;
+					 $arrayPostData['messages'][0]['type'] = "text";
+					 $arrayPostData['messages'][0]['text'] = $i;
+					 pushMsg($arrayHeader,$arrayPostData);
+				}
+		 }
    function pushMsg($arrayHeader,$arrayPostData){
       $strUrl = "https://api.line.me/v2/bot/message/push";
       $ch = curl_init();
