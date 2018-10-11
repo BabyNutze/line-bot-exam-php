@@ -14,7 +14,13 @@ $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('ขอบคุณที่แอดมาครับ');
-$response = $bot->pushMessage($pushID, $textMessageBuilder);
+$arrlength = count($pushID);
+
+for($x = 0; $x < $arrlength; $x++) {
+   // echo $cars[$x];
+$response = $bot->pushMessage($pushID[$x], $textMessageBuilder);
+}
+//$response = $bot->pushMessage($pushID, $textMessageBuilder);
 
 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
