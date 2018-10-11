@@ -30,7 +30,7 @@ require "vendor/autoload.php";
 					pushMsg($arrayHeader,$arrayPostData);
 			 }
 		}
-		if($message == "ขอบคุณครับ"){
+		if($message == "ขอบคุณครับ" || $message == "ขอบคุณ"){
 					 $arrayPostData['to'] = $id;
 					 $arrayPostData['messages'][0]['type'] = "text";
 					 $arrayPostData['messages'][0]['text'] = "ยินดีจ้า";
