@@ -21,7 +21,7 @@ $replyToken = $event['replyToken'];
 $messages = [
   {
    "type": "text",
-   "text": "Hello Quick Reply!",
+   "text": "Hello Quick Reply!"
   }
  ];
 // Make a POST Request to Messaging API to reply to sender
