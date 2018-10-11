@@ -36,7 +36,7 @@ if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 // Get text sent
 $text = $event['source']['userId'];
 
-wh_log($log_time. " " . $text);
+
 
 
 // Get replyToken
@@ -63,6 +63,7 @@ curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 $result = curl_exec($ch);
 curl_close($ch);
 echo $result . "\r\n";
+wh_log($log_time. " " . $text);
 }
 }
 }
