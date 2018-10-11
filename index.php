@@ -1,7 +1,25 @@
 <?php // callback.php
 require "vendor/autoload.php";
 require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
-date_default_timezone_set('Asia/Bangkok'); 
+date_default_timezone_set('Asia/Bangkok');
+
+$log_time = date('D d-m-Y H:i:s');
+
+
+function wh_log($log_msg)
+{
+    $log_filename = "log_user";
+    if (!file_exists($log_filename))
+    {
+        // create directory/folder uploads.
+        mkdir($log_filename, 0777, true);
+    }
+    $log_file_data = $log_filename.'/log_' . date('d-m-Y') . '.log';
+    file_put_contents($log_file_data, $log_msg . "\n", FILE_APPEND);
+}
+
+
+
 
 $access_token = 'xfdtD+noG4mK+lCu8TZMzSN2HS785dNvsejSBYNcPDJAJroO1CthWkWipqkuJ4aKQI8i4iwubJQF/EcoIcjEYfFc64KgAr4iswIr14Ijyg6olIVvP21VVEExKDY9fCqstZL+3Sd9BBTaWiBZcg6SJgdB04t89/1O/w1cDnyilFU';
 
@@ -18,13 +36,7 @@ if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 // Get text sent
 $text = $event['source']['userId'];
 
-$file = 'log_user.txt';
-// Open the file to get existing content
-$current = file_get_contents($file);
-// Append a new person to the file
-$current .= "John Smith\n";
-// Write the contents back to the file
-file_put_contents($file, $current);
+wh_log($log_time. " " . $text);
 
 
 // Get replyToken
