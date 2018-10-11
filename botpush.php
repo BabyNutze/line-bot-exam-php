@@ -17,7 +17,8 @@ $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('à¸‚à¸
 $arrlength = count($pushID);
 
 for($x = 0; $x < $arrlength; $x++) {
-   // echo $cars[$x];
+    echo $arrlength;
+   echo $pushID;
    $response = $bot->pushMessage($pushID[$x], $textMessageBuilder);
    echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 }
