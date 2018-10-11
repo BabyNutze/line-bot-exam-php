@@ -22,18 +22,6 @@ $messages = [
   {
    "type": "text",
    "text": "Hello Quick Reply!",
-   "quickReply": {
-    "items": [
-     {
-      "type": "action",
-      "action": {
-       "type":"message",
-       "label":"Message",
-       "text":"Hello World!"
-      }
-     }
-    ]
-   }
   }
  ];
 // Make a POST Request to Messaging API to reply to sender
