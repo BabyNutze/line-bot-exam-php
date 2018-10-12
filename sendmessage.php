@@ -20,7 +20,7 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label for="textmsg">message:</label>
-                              <textarea name="txtMsg" class="form-control" ></textarea>
+                              <textarea name="txtMsg" class="form-control" rows="5"></textarea>
                           </div>
                       </div>
                   </div>
