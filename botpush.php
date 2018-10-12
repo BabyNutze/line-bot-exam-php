@@ -26,6 +26,3 @@ for($x = 0; $x < $arrlength; $x++) {
    $response = $bot->pushMessage($pushID[$x], $textMessageBuilder);
    echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 }
-$response = $bot->pushMessage($pushID, $textMessageBuilder);
-
-echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
