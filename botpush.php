@@ -16,8 +16,10 @@ $pushID = array('U102d2918d61a46fb9e5b0ce72efd3c5d','Uea0b6f3a1111d357fc0e7b2fb0
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
+$messagetext = "ขอบคุณที่แอดมาครับ";
+$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messagetext);
 
-$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('ขอบคุณที่แอดมาครับ');
+
 $arrlength = count($pushID);
 
 for($x = 0; $x < $arrlength; $x++) {
