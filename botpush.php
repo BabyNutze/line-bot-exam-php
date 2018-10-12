@@ -8,11 +8,11 @@ $access_token = 'xfdtD+noG4mK+lCu8TZMzSN2HS785dNvsejSBYNcPDJAJroO1CthWkWipqkuJ4a
 
 $channelSecret = 'c5a345849ccfdef0cc027ee11252aa7c';
 
-<<<<<<< HEAD
-$pushID = 'U102d2918d61a46fb9e5b0ce72efd3c5d';
-=======
+
+//$pushID = 'U102d2918d61a46fb9e5b0ce72efd3c5d';
+
 $pushID = array('U102d2918d61a46fb9e5b0ce72efd3c5d','Uea0b6f3a1111d357fc0e7b2fb013db22');
->>>>>>> 6dc7bcc09d35e40bf423101a49b4d2dc45371087
+
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
@@ -26,13 +26,6 @@ for($x = 0; $x < $arrlength; $x++) {
    $response = $bot->pushMessage($pushID[$x], $textMessageBuilder);
    echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 }
-//$response = $bot->pushMessage($pushID, $textMessageBuilder);
+$response = $bot->pushMessage($pushID, $textMessageBuilder);
 
-//echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
-
-
-
-
-
-
-
+echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
