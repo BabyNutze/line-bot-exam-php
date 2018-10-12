@@ -11,6 +11,11 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$access_token}";
 
+$myFile = "loguser.txt";
+$fh = fopen($myFile, 'w') or die("can't open file");
+$stringData = $arrJson['events'][0]['source']['userId'];
+fwrite($fh, $stringData);
+fclose($fh);
 if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
