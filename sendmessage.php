@@ -22,6 +22,7 @@
                             <label for="textmsg">message:</label>
                               <textarea name="txtMsg" class="form-control" rows="5"></textarea>
                           </div>
+                          <button type="submit" class="btn btn-primary">Submit</button>
                       </div>
                   </div>
               </form>
