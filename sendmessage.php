@@ -14,7 +14,7 @@
               <div class="contact-image">
                   <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
               </div>
-              <form method="post">
+              <form method="post" action="botpush.php">
                   <h3>Message</h3>
                  <div class="row">
                       <div class="col-md-6">
@@ -22,7 +22,7 @@
                             <label for="textmsg">message:</label>
                               <textarea name="txtMsg" class="form-control" rows="5"></textarea>
                           </div>
-                          <button type="submit" class="btn btn-primary">Submit</button>
+                          <button type="submit" class="btn btn-primary">ยืนยัน</button>
                       </div>
                   </div>
               </form>
