@@ -3,20 +3,7 @@ require "vendor/autoload.php";
 require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
 date_default_timezone_set('Asia/Bangkok');
 
-$log_time = date('D d-m-Y H:i:s');
-
-
-function wh_log($log_msg)
-{
-    $log_filename = "log_user";
-    if (!file_exists($log_filename))
-    {
-        // create directory/folder uploads.
-        mkdir($log_filename, 0777, true);
-    }
-    $log_file_data = $log_filename.'/log_' . date('d-m-Y') . '.log';
-    file_put_contents($log_file_data, $log_msg . "\n", FILE_APPEND);
-}
+$log_time = date('d-m-Y H:i:s');
 
 
 
