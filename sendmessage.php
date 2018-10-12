@@ -20,7 +20,7 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label for="textmsg">message:</label>
-                              <textarea name="txtMsg" class="form-control" rows="5"></textarea>
+                              <textarea name="txtmsg" class="form-control" rows="5"></textarea>
                           </div>
                           <button type="submit" class="btn btn-primary">ยืนยัน</button>
                       </div>
