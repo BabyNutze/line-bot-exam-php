@@ -1,10 +1,8 @@
 <?php
 echo "hi";
-$myfile = fopen("user.txt", "w") or die("Unable to open file!");
-$txt = "John Doe\n";
-fwrite($myfile, $txt);
-$txt = "Jane Doe\n";
-fwrite($myfile, $txt);
-fclose($myfile);
+$my_file = 'user.txt';
+$handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
+$data = 'This is the data';
+fwrite($handle, $data);
 echo "hi";
 ?>
