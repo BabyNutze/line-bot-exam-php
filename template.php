@@ -120,7 +120,7 @@ if(!is_null($events)){
                         $audioUrl = "https://www.ninenik.com/line/S_6988827932080.wav";
                         $replyData = new AudioMessageBuilder($audioUrl,20000);
                         break;
-                    case "l" :
+                    case "l" || "location" || "ที่ตั้ง":
                         $placeName = "ตำแหน่งที่ตั้งสภาวิศวกร";
                         $placeAddress = "แขวง พลับพลา เขต วังทองหลาง กรุงเทพมหานคร ประเทศไทย";
                         $latitude = 13.76363767;
