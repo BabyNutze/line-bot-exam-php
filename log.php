@@ -1,9 +1,6 @@
 <?php
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-
-$log = new Logger('name');
-$log->pushHandler(new StreamHandler('php://stderr', Logger::WARNING));
-
-$log->addWarning('hello');
+$my_file = 'log.txt';
+$handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
+$data = 'This is the data';
+fwrite($handle, $data);
 ?>
