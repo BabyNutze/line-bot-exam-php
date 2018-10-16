@@ -118,11 +118,12 @@ curl_close ($ch);
    //รับ id ของผู้ใช้
    $id = $arrayJson['events'][0]['source']['userId'];
    #ตัวอย่าง Message Type "Text + Sticker"
+   $log_time = date('d-m-Y H:i:s');
    $file = 'people.txt';
    // Open the file to get existing content
    $current = file_get_contents($file);
    // Append a new person to the file
-   $current .= "John Smith\n";
+   $current .= $log_time + "---" + $id;
    // Write the contents back to the file
    file_put_contents($file, $current);
 
