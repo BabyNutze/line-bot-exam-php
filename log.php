@@ -5,5 +5,5 @@ use Monolog\Handler\StreamHandler;
 $log = new Logger('name');
 $log->pushHandler(new StreamHandler('php://stderr', Logger::WARNING));
 
-$log->addWarning('hoello');
+$log->addWarning('hello');
 ?>
