@@ -117,6 +117,7 @@ curl_close ($ch);
    $message = $arrayJson['events'][0]['message']['text'];
    //รับ id ของผู้ใช้
    $id = $arrayJson['events'][0]['source']['userId'];
+   $message = $arrayJson['events'][0]['message']['text'];
    #ตัวอย่าง Message Type "Text + Sticker"
    $log_time = date('d-m-Y H:i:s');
    $file = 'people.txt';
