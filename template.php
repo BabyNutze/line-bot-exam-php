@@ -108,7 +108,7 @@ if(!is_null($events)){
                         break;
                     case "i":
                         $picFullSize = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif';
-                        $picThumbnail = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit_tn.gif';
+                        $picThumbnail = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit_tn.jpg';
                         $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
                         break;
                     case "v":
