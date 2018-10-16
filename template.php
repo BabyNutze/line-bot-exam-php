@@ -153,7 +153,7 @@ if(!is_null($events)){
                         $replyData = new StickerMessageBuilder($packageID,$stickerID);
                         break;
                     case "im":
-                        $imageMapUrl = 'https://www.mywebsite.com/imgsrc/photos/w/sampleimagemap';
+                        $imageMapUrl = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif';
                         $replyData = new ImagemapMessageBuilder(
                             $imageMapUrl,
                             'This is Title',
@@ -172,7 +172,7 @@ if(!is_null($events)){
                     case "tm":
                         $replyData = new TemplateMessageBuilder('Confirm Template',
                             new ConfirmTemplateBuilder(
-                                    'Confirm template builder',
+                                    'คุณเป็นสมาชิกสภาวิศวกรใช่ไหม',
                                     array(
                                         new MessageTemplateActionBuilder(
                                             'Yes',
