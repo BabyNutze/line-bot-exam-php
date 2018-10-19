@@ -102,7 +102,7 @@ if(!is_null($events)){
             case 'text':
                 $userMessage = strtolower($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
-                    case "t":
+                    case "hi" || "สวัสดี" || "ดีจ้า" || "ดีจ้าา":
                         $textReplyMessage = "สวัสดีครับ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
@@ -311,8 +311,12 @@ if(!is_null($events)){
                             )
                         );
                         break;
+                    case '-help':
+                      // code...
+
+                      break;
                     default:
-                        $textReplyMessage = "คุณไม่ได้พิมพ์ ค่า ตามที่กำหนด";
+                        $textReplyMessage = "พิมพ์ -help เพื่อดูคำสั่งที่ใช้ได้";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
                 }
