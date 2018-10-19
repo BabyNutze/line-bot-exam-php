@@ -312,7 +312,7 @@ if(!is_null($events)){
                         );
                         break;
                     default:
-                        $textReplyMessage = " คุณไม่ได้พิมพ์ ค่า ตามที่กำหนด";
+                        $textReplyMessage = "คุณไม่ได้พิมพ์ ค่า ตามที่กำหนด";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
                 }
@@ -324,7 +324,7 @@ if(!is_null($events)){
         }
     }
 }
-$response = $bot->replyMessage($replyToken,$replyData);
+$response = $bot->replyMessage(@$replyToken,@$replyData);
 if ($response->isSucceeded()) {
     echo 'Succeeded!';
     return;
