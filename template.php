@@ -103,12 +103,12 @@ if(!is_null($events)){
                 $userMessage = strtolower($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
                     case "t":
-                        $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
+                        $textReplyMessage = "สวัสดีครับ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
                     case "i":
-                        $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
-                        $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
+                    $picFullSize = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif';
+                    $picThumbnail = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit_tn.jpg';
                         $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
                         break;
                     case "v":
@@ -120,11 +120,11 @@ if(!is_null($events)){
                         $audioUrl = "https://www.ninenik.com/line/S_6988827932080.wav";
                         $replyData = new AudioMessageBuilder($audioUrl,20000);
                         break;
-                    case "l":
-                        $placeName = "ที่ตั้งร้าน";
-                        $placeAddress = "แขวง พลับพลา เขต วังทองหลาง กรุงเทพมหานคร ประเทศไทย";
-                        $latitude = 13.780401863217657;
-                        $longitude = 100.61141967773438;
+                    case "l" || "location" || "ที่ตั้ง":
+                            $placeName = "ตำแหน่งที่ตั้งสภาวิศวกร";
+                        $placeAddress = "487/1 ซอยรามคำแหง 39 แขวงพลับพลา เขตวังทองหลาง กรุงเทพมหานคร ประเทศไทย";
+                        $latitude = 13.76363767;
+                        $longitude = 100.60656106;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);
                         break;
                     case "m":
@@ -137,8 +137,8 @@ if(!is_null($events)){
 
                         $placeName = "ที่ตั้งร้าน";
                         $placeAddress = "แขวง พลับพลา เขต วังทองหลาง กรุงเทพมหานคร ประเทศไทย";
-                        $latitude = 13.780401863217657;
-                        $longitude = 100.61141967773438;
+                        $latitude = 13.76363767;
+                        $longitude = 100.60656106;
                         $locationMessage = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);
 
                         $multiMessage =     new MultiMessageBuilder;
@@ -153,7 +153,7 @@ if(!is_null($events)){
                         $replyData = new StickerMessageBuilder($packageID,$stickerID);
                         break;
                     case "im":
-                        $imageMapUrl = 'https://www.mywebsite.com/imgsrc/photos/w/sampleimagemap';
+                        $imageMapUrl = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif';
                         $replyData = new ImagemapMessageBuilder(
                             $imageMapUrl,
                             'This is Title',
@@ -228,9 +228,9 @@ if(!is_null($events)){
                         );
                         break;
                     case "t_f":
-                        $replyData = new TemplateMessageBuilder('Confirm Template',
+                        $replyData = new TemplateMessageBuilder('ยืนยัน',
                             new ConfirmTemplateBuilder(
-                                    'Confirm template builder', // ข้อความแนะนหรือบอกวิธีการ หรือคำอธิบาย
+                                    'คุณเป็นสมาชิกสภาวิศวกรใช่ไหม', // ข้อความแนะนหรือบอกวิธีการ หรือคำอธิบาย
                                     array(
                                         new MessageTemplateActionBuilder(
                                             'Yes', // ข้อความสำหรับปุ่มแรก
