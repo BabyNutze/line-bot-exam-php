@@ -312,7 +312,7 @@ if(!is_null($events)){
                         );
                         break;
                     default:
-                        $textReplyMessage = " คุณไม่ได้พิมพ์ค่าตามที่กำหนด";
+                        $textReplyMessage = "พิมพ์ -help เพื่อดูคำสั่งที่ใช้ได้";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
                 }
