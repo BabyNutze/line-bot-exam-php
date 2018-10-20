@@ -100,6 +100,7 @@ if(!is_null($events)){
     if(!is_null($is_message)){
         switch ($typeMessage){
             case 'text':
+            $userMessage = strtolower($userMessage); 
                 switch ($userMessage) {
                     case "สวัสดี" || "ดีจ้า" || "ดีครับ":
                         $textReplyMessage = "สวัสดีครับ";
