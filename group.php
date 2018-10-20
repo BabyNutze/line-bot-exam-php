@@ -111,6 +111,14 @@ if(!is_null($events)){
                        $textReplyMessage = "รุก ไซร้ ชัก ไม่รีบ";
                        $replyData = new TextMessageBuilder($textReplyMessage);
                        break;
+
+                    case "i":
+                      $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
+                      $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
+                      $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
+                      break;
+
+
                     case "v":
                         $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/240';
                         $videoUrl = "https://www.ninenik.com/line/simplevideo.mp4";
@@ -315,11 +323,7 @@ if(!is_null($events)){
                       $picThumbnail = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627_tn.jpg';
                       $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
                       break;
-                      case "i":
-                          $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
-                          $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
-                          $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
-                          break;
+
 
                     default:
                         $textReplyMessage = "เสือก";
