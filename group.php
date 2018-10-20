@@ -1,44 +1,11 @@
 <?php
-   $accessToken = "xfdtD+noG4mK+lCu8TZMzSN2HS785dNvsejSBYNcPDJAJroO1CthWkWipqkuJ4aKQI8i4iwubJQF/EcoIcjEYfFc64KgAr4iswIr14Ijyg6olIVvP21VVEExKDY9fCqstZL+3Sd9BBTaWiBZcg6SJgdB04t89/1O/w1cDnyilFU=";//copy ข้อความ Channel access token ตอนที่ตั้งค่า
-   $content = file_get_contents('php://input');
-      $arrayJson = json_decode($content, true);
-   $arrayHeader = array();
-      $arrayHeader[] = "Content-Type: application/json";
-      $arrayHeader[] = "Authorization: Bearer {$accessToken}";
-   //รับข้อความจากผู้ใช้
-      $message = $arrayJson['events'][0]['message']['text'];
-   //รับ id ว่ามาจากไหน
-      if(isset($arrayJson['events'][0]['source']['userId']){
-         $id = $arrayJson['events'][0]['source']['userId'];
-      }
-      else if(isset($arrayJson['events'][0]['source']['groupId'])){
-         $id = $arrayJson['events'][0]['source']['groupId'];
-      }
-      else if(isset($arrayJson['events'][0]['source']['room'])){
-         $id = $arrayJson['events'][0]['source']['room'];
-      }
-   #ตัวอย่าง Message Type "Text + Sticker"
-      if($message == "สวัสดี"){
-         $arrayPostData['to'] = $id;
-         $arrayPostData['messages'][0]['type'] = "text";
-         $arrayPostData['messages'][0]['text'] = "สวัสดีจ้าาา";
-         $arrayPostData['messages'][1]['type'] = "sticker";
-         $arrayPostData['messages'][1]['packageId'] = "2";
-         $arrayPostData['messages'][1]['stickerId'] = "34";
-         pushMsg($arrayHeader,$arrayPostData);
-      }
-   function pushMsg($arrayHeader,$arrayPostData){
-         $strUrl = "https://api.line.me/v2/bot/message/push";
-   $ch = curl_init();
-         curl_setopt($ch, CURLOPT_URL,$strUrl);
-         curl_setopt($ch, CURLOPT_HEADER, false);
-         curl_setopt($ch, CURLOPT_POST, true);
-         curl_setopt($ch, CURLOPT_HTTPHEADER, $arrayHeader);
-         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrayPostData));
-         curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
-         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-         $result = curl_exec($ch);
-         curl_close ($ch);
-      }
-   exit;
-   ?>
+
+   $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('xfdtD+noG4mK+lCu8TZMzSN2HS785dNvsejSBYNcPDJAJroO1CthWkWipqkuJ4aKQI8i4iwubJQF/EcoIcjEYfFc64KgAr4iswIr14Ijyg6olIVvP21VVEExKDY9fCqstZL+3Sd9BBTaWiBZcg6SJgdB04t89/1O/w1cDnyilFU=');
+   $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => 'c5a345849ccfdef0cc027ee11252aa7c']);
+
+   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
+   $response = $bot->pushMessage('<to>', $textMessageBuilder);
+
+   echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+
+?>
