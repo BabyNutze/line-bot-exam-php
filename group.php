@@ -106,7 +106,7 @@ if(!is_null($events)){
                         $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
-                    case "i":
+                    case "ผลบอล":
                         $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
                         $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
                         $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
@@ -312,7 +312,7 @@ if(!is_null($events)){
                         );
                         break;
                     default:
-                        $textReplyMessage = " คุณไม่ได้พิมพ์ ค่า ตามที่กำหนด";
+                        $textReplyMessage = "เสือก";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
                 }
