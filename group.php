@@ -124,7 +124,7 @@ if(!is_null($events)){
                         $audioUrl = "https://www.ninenik.com/line/S_6988827932080.wav";
                         $replyData = new AudioMessageBuilder($audioUrl,20000);
                         break;
-                    case "l" || "location" || "ที่ตั้ง":
+                    case "location" || "ที่ตั้ง":
                         $placeName = "ตำแหน่งตำแหน่งที่ตั้งสภาวิศวกร";
                         $placeAddress = "487/1 ซอยรามคำแหง 39 แขวงพลับพลา เขตวังทองหลาง กรุงเทพมหานคร ประเทศไทย";
                         $latitude = 13.780401863217657;
