@@ -232,17 +232,17 @@ if(!is_null($events)){
                         );
                         break;
                     case "t_f":
-                        $replyData = new TemplateMessageBuilder('Confirm Template',
+                        $replyData = new TemplateMessageBuilder('ยืนยัน',
                             new ConfirmTemplateBuilder(
-                                    'Confirm template builder', // ข้อความแนะนหรือบอกวิธีการ หรือคำอธิบาย
+                                    'คุคุณเป็นสมาชิกสภาวิศวกรใช่ไหม', // ข้อความแนะนหรือบอกวิธีการ หรือคำอธิบาย
                                     array(
                                         new MessageTemplateActionBuilder(
-                                            'Yes', // ข้อความสำหรับปุ่มแรก
-                                            'YES'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                            'ใช่', // ข้อความสำหรับปุ่มแรก
+                                            'กรุณากรอกหมายเลขสมาชิก'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                                         ),
                                         new MessageTemplateActionBuilder(
-                                            'No', // ข้อความสำหรับปุ่มแรก
-                                            'NO' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                            'ไม่', // ข้อความสำหรับปุ่มแรก
+                                            'คุณไม่สามารถใช้บริการนี้ได้ขอบคุณครับ' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                                         )
                                     )
                             )
