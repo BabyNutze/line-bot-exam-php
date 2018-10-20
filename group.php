@@ -45,6 +45,14 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ธรรมด๊าาาา";
+}else if($arrJson['events'][0]['message']['text'] == "ผลบอล" ){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $picFullSize = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627.jpg';
+$picThumbnail = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627_tn.jpg';
+$replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "ธรรมด๊าาาา";
 }else{
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
