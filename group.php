@@ -1,11 +1,11 @@
 <?php
 // กรณีต้องการตรวจสอบการแจ้ง error ให้เปิด 3 บรรทัดล่างนี้ให้ทำงาน กรณีไม่ ให้ comment ปิดไป
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // include composer autoload
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 // การตั้งเกี่ยวกับ bot
 require_once 'bot_settings.php';
@@ -100,23 +100,15 @@ if(!is_null($events)){
     if(!is_null($is_message)){
         switch ($typeMessage){
             case 'text':
-            $userMessage = strtolower($userMessage); 
+                $userMessage = strtolower($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
-                    case "สวัสดี" || "ดีจ้า" || "ดีครับ":
-                        $textReplyMessage = "สวัสดีครับ";
+                    case "t":
+                        $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
-                    case "ทำอะไรได้บ้าง":
-                            $textReplyMessage = "รุก ไซร้ ชัก ไม่รีบครับ";
-                            $replyData = new TextMessageBuilder($textReplyMessage);
-                            break;
-                    case "เกรี้ยวกราด":
-                                $textReplyMessage = "เปล๊าาา";
-                                $replyData = new TextMessageBuilder($textReplyMessage);
-                                break;
-                    case "ผลบอล":
-                        $picFullSize = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627.jpg';
-                        $picThumbnail = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627_tn.jpg';
+                    case "i":
+                        $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
+                        $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
                         $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
                         break;
                     case "v":
@@ -128,25 +120,25 @@ if(!is_null($events)){
                         $audioUrl = "https://www.ninenik.com/line/S_6988827932080.wav";
                         $replyData = new AudioMessageBuilder($audioUrl,20000);
                         break;
-                    case "l" || "ที่ตั้ง":
-                        $placeName = "สภาวิศวกร";
-                        $placeAddress = "487/1 ซอยรามคำแหง 39 แขวงพลับพลา เขตวังทองหลาง กรุงเทพมหานคร ประเทศไทย";
-                        $latitude = 13.763649;
-                        $longitude = 100.606560;
+                    case "l":
+                        $placeName = "ที่ตั้งร้าน";
+                        $placeAddress = "แขวง พลับพลา เขต วังทองหลาง กรุงเทพมหานคร ประเทศไทย";
+                        $latitude = 13.780401863217657;
+                        $longitude = 100.61141967773438;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);
                         break;
                     case "m":
-                        $textReplyMessage = "ครับ";
+                        $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
                         $textMessage = new TextMessageBuilder($textReplyMessage);
 
                         $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
                         $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
                         $imageMessage = new ImageMessageBuilder($picFullSize,$picThumbnail);
 
-                        $placeName = "สภาวิศวกร";
-                        $placeAddress = "487/1 ซอยรามคำแหง 39 แขวงพลับพลา เขตวังทองหลาง กรุงเทพมหานคร ประเทศไทย";
-                        $latitude = 13.763649;
-                        $longitude = 100.606560;
+                        $placeName = "ที่ตั้งร้าน";
+                        $placeAddress = "แขวง พลับพลา เขต วังทองหลาง กรุงเทพมหานคร ประเทศไทย";
+                        $latitude = 13.780401863217657;
+                        $longitude = 100.61141967773438;
                         $locationMessage = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);
 
                         $multiMessage =     new MultiMessageBuilder;
@@ -178,17 +170,17 @@ if(!is_null($events)){
                             ));
                         break;
                     case "tm":
-                        $replyData = new TemplateMessageBuilder('ยืนยัน',
+                        $replyData = new TemplateMessageBuilder('Confirm Template',
                             new ConfirmTemplateBuilder(
-                                    'คุคุณเป็นสมาชิกสภาวิศวกรใช่ไหม',
+                                    'Confirm template builder',
                                     array(
                                         new MessageTemplateActionBuilder(
-                                            'ใช่',
-                                            'กรุณาพิมพ์เลขที่สมาชิก'
+                                            'Yes',
+                                            'Text Yes'
                                         ),
                                         new MessageTemplateActionBuilder(
-                                            'ไม่ใช่',
-                                            'คุณไม่สามารถใช้งานบอทแจ้งเตือนข่าวสารสภาวิศวกรได้หากไม่ได้เป็นสมาชิก'
+                                            'No',
+                                            'Text NO'
                                         )
                                     )
                             )
@@ -221,9 +213,10 @@ if(!is_null($events)){
                                 http_build_query(array(
                                     'action'=>'buy',
                                     'item'=>100
-                                )) // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event      'Postback Text'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                              ),
-                            );
+                                )) // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
+    //                          'Postback Text'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                        );
                         $imageUrl = 'https://www.mywebsite.com/imgsrc/photos/w/simpleflower';
                         $replyData = new TemplateMessageBuilder('Button Template',
                             new ButtonTemplateBuilder(
@@ -319,7 +312,7 @@ if(!is_null($events)){
                         );
                         break;
                     default:
-                        $textReplyMessage = "เสือก";
+                        $textReplyMessage = " คุณไม่ได้พิมพ์ ค่า ตามที่กำหนด";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
                 }
@@ -338,5 +331,5 @@ if ($response->isSucceeded()) {
 }
 
 // Failed
-//echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 ?>
