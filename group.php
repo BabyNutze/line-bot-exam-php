@@ -111,11 +111,12 @@ if(!is_null($events)){
                        $textReplyMessage = "รุก ไซร้ ชัก ไม่รีบ";
                        $replyData = new TextMessageBuilder($textReplyMessage);
                        break;
-                       case "i":
-                       $picFullSize = 'https://enigmatic-scrubland-34657.herokuapp.com/images/1360627.jpg';
-                       $picThumbnail = 'https://enigmatic-scrubland-34657.herokuapp.com/images/1360627_tn.jpg';
-                           $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
-                           break;
+
+                    case "เริ่มฉลาดแล้ว":
+                      $textReplyMessage = "เราเก่งไง";
+                      $replyData = new TextMessageBuilder($textReplyMessage);
+                      break;
+
                     case  "ผลบอล":
                       $picFullSize = 'https://enigmatic-scrubland-34657.herokuapp.com/images/1360627.jpg';
                       $picThumbnail = 'https://enigmatic-scrubland-34657.herokuapp.com/images/1360627_tn.jpg';
