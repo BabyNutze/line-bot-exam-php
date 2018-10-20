@@ -114,8 +114,8 @@ if(!is_null($events)){
                                 $replyData = new TextMessageBuilder($textReplyMessage);
                                 break;
                     case "ผลบอล":
-                    $picFullSize = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627.jpg';
-                  $picThumbnail = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627_tn.jpg';
+                        $picFullSize = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627.jpg';
+                        $picThumbnail = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627_tn.jpg';
                         $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
                         break;
                     case "v":
@@ -220,10 +220,9 @@ if(!is_null($events)){
                                 http_build_query(array(
                                     'action'=>'buy',
                                     'item'=>100
-                                )) // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
-    //                          'Postback Text'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                            ),
-                        );
+                                )) // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event      'Postback Text'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                              ),
+                            );
                         $imageUrl = 'https://www.mywebsite.com/imgsrc/photos/w/simpleflower';
                         $replyData = new TemplateMessageBuilder('Button Template',
                             new ButtonTemplateBuilder(
