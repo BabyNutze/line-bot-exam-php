@@ -106,15 +106,15 @@ if(!is_null($events)){
                         $textReplyMessage = "สวัสดี Bot ไงจะใครหละ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
-                    case "ทำอะไรได้มั่ง":
-                        $textReplyMessage = "รุก ไซร้ ชัก ไม่รีบ";
-                        $replyData = new TextMessageBuilder($textReplyMessage);
-                        break;
                     case "ผลบอล":
                        $picFullSize = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627.jpg';
                        $picThumbnail = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627_tn.jpg';
                        $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
-                        break;
+                       break;
+                    case "ทำอะไรได้มั่ง":
+                       $textReplyMessage = "รุก ไซร้ ชัก ไม่รีบ";
+                       $replyData = new TextMessageBuilder($textReplyMessage);
+                       break;
                     case "v":
                         $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/240';
                         $videoUrl = "https://www.ninenik.com/line/simplevideo.mp4";
