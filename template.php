@@ -57,6 +57,15 @@ $content = file_get_contents('php://input');
 
 // แปลงข้อความรูปแบบ JSON  ให้อยู่ในโครงสร้างตัวแปร array
 $events = json_decode($content, true);
+{
+  "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+  "type": "join",
+  "timestamp": 1462629479859,
+  "source": {
+    "type": "group",
+    "groupId": "C4af4980629..."
+  }
+}
 if(!is_null($events)){
     // ถ้ามีค่า สร้างตัวแปรเก็บ replyToken ไว้ใช้งาน
     $replyToken = $events['events'][0]['replyToken'];
