@@ -105,11 +105,11 @@ if(!is_null($events)){
                         $textReplyMessage = "สวัสดีครับ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
-                        case "ทำอะไรได้บ้าง":
+                    case "ทำอะไรได้บ้าง":
                             $textReplyMessage = "รุก ไซร้ ชัก ไม่รีบครับ";
                             $replyData = new TextMessageBuilder($textReplyMessage);
                             break;
-                            case "เกรี้ยวกราด":
+                    case "เกรี้ยวกราด":
                                 $textReplyMessage = "เปล๊าาา";
                                 $replyData = new TextMessageBuilder($textReplyMessage);
                                 break;
