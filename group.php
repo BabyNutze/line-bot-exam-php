@@ -106,8 +106,8 @@ if(!is_null($events)){
                         $textReplyMessage = "สวัสดี Bot ไงจะใครหละ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
-                    case "สวัสดี":
-                        $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
+                    case "ทำอะไรได้มั่ง" || "ทำอะไรได้บ้าง":
+                        $textReplyMessage = "รุก ไซร้ ชัก ไม่รีบ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
                     case "ผลบอล":
