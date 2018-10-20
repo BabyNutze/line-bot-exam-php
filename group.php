@@ -102,7 +102,11 @@ if(!is_null($events)){
             case 'text':
                 $userMessage = strtolower($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
-                    case "t":
+                    case "สวัสดี":
+                        $textReplyMessage = "สวัสดี Bot ไงจะใครหละ";
+                        $replyData = new TextMessageBuilder($textReplyMessage);
+                        break;
+                    case "สวัสดี":
                         $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
