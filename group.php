@@ -310,6 +310,13 @@ if(!is_null($events)){
                             )
                         );
                         break;
+                    case "ผลบอล":
+                      $picFullSize = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627.jpg';
+                      $picThumbnail = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627_tn.jpg';
+                      $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
+                      break;
+
+
                     default:
                         $textReplyMessage = "เสือก";
                         $replyData = new TextMessageBuilder($textReplyMessage);
