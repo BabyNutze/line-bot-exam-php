@@ -112,8 +112,8 @@ if(!is_null($events)){
                        $replyData = new TextMessageBuilder($textReplyMessage);
                        break;
                        case "i":
-                       $picFullSize = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif';
-                       $picThumbnail = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit_tn.jpg';
+                       $picFullSize = 'https://enigmatic-scrubland-34657.herokuapp.com/images/1360627.jpg';
+                       $picThumbnail = 'https://enigmatic-scrubland-34657.herokuapp.com/images/1360627_tn.jpg';
                            $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
                            break;
                     case  "ผลบอล":
