@@ -111,6 +111,11 @@ if(!is_null($events)){
                         $picThumbnail = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627_tn.jpg';
                         $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
                         break;
+                        case "i":
+                        $picFullSize = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627.jpg';
+                        $picThumbnail = 'http://enigmatic-scrubland-34657.herokuapp.com/images/1360627_tn.jpg';
+                                                $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
+                                                break;
                     case "ทำอะไรได้มั่ง":
                        $textReplyMessage = "รุก ไซร้ ชัก ไม่รีบ";
                        $replyData = new TextMessageBuilder($textReplyMessage);
