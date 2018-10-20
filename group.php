@@ -25,7 +25,14 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "รุก ไซร้ ชัก ไม่รีบครับ";
-}else{
+}else if($arrJson['events'][0]['message']['text'] == "555" || $arrJson['events'][0]['message']['หุหุ'] || $arrJson['events'][0]['message']['อิอิ']){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "ขำควยไร ตลกหรอสัส บวกมั้ย";
+}
+
+else{
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
