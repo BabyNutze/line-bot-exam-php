@@ -106,17 +106,14 @@ if(!is_null($events)){
                         $textReplyMessage = "สวัสดี Bot ไงจะใครหละ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
-
                     case "ทำอะไรได้มั่ง":
                        $textReplyMessage = "รุก ไซร้ ชัก ไม่รีบ";
                        $replyData = new TextMessageBuilder($textReplyMessage);
                        break;
-
                     case "เริ่มฉลาดแล้ว":
                       $textReplyMessage = "เราเก่งไง";
                       $replyData = new TextMessageBuilder($textReplyMessage);
                       break;
-
                     case  "ผลบอล":
                       $picFullSize = 'https://enigmatic-scrubland-34657.herokuapp.com/images/1360627.jpg';
                       $picThumbnail = 'https://enigmatic-scrubland-34657.herokuapp.com/images/1360627_tn.jpg';
@@ -166,7 +163,7 @@ if(!is_null($events)){
                         $replyData = new StickerMessageBuilder($packageID,$stickerID);
                         break;
                     case "im":
-                        $imageMapUrl = 'https://www.mywebsite.com/imgsrc/photos/w/sampleimagemap';
+                        $imageMapUrl = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif';
                         $replyData = new ImagemapMessageBuilder(
                             $imageMapUrl,
                             'This is Title',
@@ -177,7 +174,7 @@ if(!is_null($events)){
                                     new AreaBuilder(0,0,520,699)
                                     ),
                                 new ImagemapUriActionBuilder(
-                                    'http://www.ninenik.com',
+                                    'http://www.coe.or.th',
                                     new AreaBuilder(520,0,520,699)
                                     )
                             ));
@@ -185,14 +182,14 @@ if(!is_null($events)){
                     case "tm":
                         $replyData = new TemplateMessageBuilder('Confirm Template',
                             new ConfirmTemplateBuilder(
-                                    'Confirm template builder',
+                                    'คุณเป็นสมาชิกสภาวิศวกรใช่ไหม',
                                     array(
                                         new MessageTemplateActionBuilder(
-                                            'Yes',
+                                            'ใช่',
                                             'Text Yes'
                                         ),
                                         new MessageTemplateActionBuilder(
-                                            'No',
+                                            'ไม่ใช่',
                                             'Text NO'
                                         )
                                     )
@@ -323,7 +320,20 @@ if(!is_null($events)){
                             )
                         );
                         break;
-
+                    case "carousel" :
+                    			$columns = array();
+                    			$img_url = "https://cdn.shopify.com/s/files/1/0379/7669/products/sampleset2_1024x1024.JPG?v=1458740363";
+                    			for($i=0;$i<5;$i++) {
+                    				$actions = array(
+                    					new PostbackTemplateActionBuilder("Add to Card","action=carousel&button=".$i),
+                    					new UriTemplateActionBuilder("View","http://www.coe.or.th")
+                    				);
+                    				$column = new CarouselColumnTemplateBuilder("รูปภาพ", "โลโก้สภาวิศวกร", $img_url , $actions);
+                    				$columns[] = $column;
+                    			}
+                    			$carousel = new CarouselTemplateBuilder($columns);
+                    			$outputText = new TemplateMessageBuilder("Carousel Demo", $carousel);
+                    			break;
 
                     default:
                         $textReplyMessage = "เสือก";
@@ -331,6 +341,10 @@ if(!is_null($events)){
                         break;
                 }
                 break;
+
+
+
+
             default:
                 $textReplyMessage = json_encode($events);
                 $replyData = new TextMessageBuilder($textReplyMessage);
@@ -338,7 +352,8 @@ if(!is_null($events)){
         }
     }
 }
-$response = $bot->replyMessage($replyToken,$replyData);
+//$response = $bot->replyMessage($replyToken,$replyData);
+$response = $bot->replyMessage($event->getReplyToken(), $outputText);
 if ($response->isSucceeded()) {
     echo 'Succeeded!';
     return;
