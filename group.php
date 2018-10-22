@@ -325,7 +325,7 @@ if(!is_null($events)){
                     			$img_url = "https://cdn.shopify.com/s/files/1/0379/7669/products/sampleset2_1024x1024.JPG?v=1458740363";
                     			for($i=0;$i<5;$i++) {
                     				$actions = array(
-                    					new PostbackTemplateActionBuilder("Add to Card","action=carousel&button=".$i),
+                    					new PostbackTemplateActionBuilder("me","action=carousel&button=".$i),
                     					new UriTemplateActionBuilder("View","http://www.coe.or.th")
                     				);
                     				$column = new CarouselColumnTemplateBuilder("รูปภาพ", "โลโก้สภาวิศวกร", $img_url , $actions);
