@@ -203,11 +203,11 @@ if(!is_null($events)){
                                 'This is Text' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                             new UriTemplateActionBuilder(
-                                'Uri Template', // ข้อความแสดงในปุ่ม
+                                'เว็บไซต์สภาวิศวกร', // ข้อความแสดงในปุ่ม
                                 'https://www.coe.or.th'
                             ),
                             new DatetimePickerTemplateActionBuilder(
-                                'Datetime Picker', // ข้อความแสดงในปุ่ม
+                                'เลือกวันและเวลา', // ข้อความแสดงในปุ่ม
                                 http_build_query(array(
                                     'action'=>'reservation',
                                     'person'=>5
@@ -218,7 +218,7 @@ if(!is_null($events)){
                                 substr_replace(date("Y-m-d H:i"),'T',10,1) //วันที่ เวลา น้อยสุดที่เลือกได้
                             ),
                             new PostbackTemplateActionBuilder(
-                                'Postback', // ข้อความแสดงในปุ่ม
+                                'ยืนยัน', // ข้อความแสดงในปุ่ม
                                 http_build_query(array(
                                     'action'=>'buy',
                                     'item'=>100
@@ -229,8 +229,8 @@ if(!is_null($events)){
                         $imageUrl = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif';
                         $replyData = new TemplateMessageBuilder('Button Template',
                             new ButtonTemplateBuilder(
-                                    'button template builder', // กำหนดหัวเรื่อง
-                                    'Please select', // กำหนดรายละเอียด
+                                    'สภาวิศวกร', // กำหนดหัวเรื่อง
+                                    'กรุณาเลือก', // กำหนดรายละเอียด
                                     $imageUrl, // กำหนด url รุปภาพ
                                     $actionBuilder  // กำหนด action object
                             )
