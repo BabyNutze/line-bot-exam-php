@@ -136,7 +136,7 @@ if(!is_null($events)){
                         $longitude = 100.60656106;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);
                         break;
-                    case "m" || "ที่ตั้ง"  || "ทางไป":
+                    case "m" || "ตำแหน่ง"  || "ทางไป":
                         $textReplyMessage = "ขอบคุณครับ";
                         $textMessage = new TextMessageBuilder($textReplyMessage);
 
