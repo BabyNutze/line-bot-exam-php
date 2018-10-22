@@ -302,10 +302,17 @@ if(!is_null($events)){
                         $replyData = new TemplateMessageBuilder('Image Carousel',
                             new ImageCarouselTemplateBuilder(
                                 array(
+                                  new ImageCarouselColumnTemplateBuilder(
+                                      'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif',
+                                      new UriTemplateActionBuilder(
+                                          'เว็บไซต์สภาวิศวกร', // ข้อความแสดงในปุ่ม
+                                          'https://www.coe.or.th'
+                                      )
+                                  ),
                                     new ImageCarouselColumnTemplateBuilder(
                                         'https://enigmatic-scrubland-34657.herokuapp.com/images/fb.jpg',
                                         new UriTemplateActionBuilder(
-                                            'Uri Template', // ข้อความแสดงในปุ่ม
+                                            'facebook สภาวิศกร', // ข้อความแสดงในปุ่ม
                                             'https://www.facebook.com/coethai'
                                         )
                                     ),
