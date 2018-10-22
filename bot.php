@@ -136,15 +136,15 @@ if(!is_null($events)){
                         $longitude = 100.60656106;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);
                         break;
-                    case "m":
-                        $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
+                    case "m" || "ที่ตั้ง"  || "ทางไป":
+                        $textReplyMessage = "ขอบคุณครับ";
                         $textMessage = new TextMessageBuilder($textReplyMessage);
 
-                        $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
-                        $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
+                        $picFullSize = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif';
+                        $picThumbnail = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit_tn.jpg';
                         $imageMessage = new ImageMessageBuilder($picFullSize,$picThumbnail);
 
-                        $placeName = "ที่ตั้งร้าน";
+                        $placeName = "แผนที่สภาวิศวกร";
                         $placeAddress = "แขวง พลับพลา เขต วังทองหลาง กรุงเทพมหานคร ประเทศไทย";
                         $latitude = 13.76363767;
                         $longitude = 100.60656106;
@@ -173,7 +173,7 @@ if(!is_null($events)){
                                     new AreaBuilder(0,0,520,699)
                                     ),
                                 new ImagemapUriActionBuilder(
-                                    'http://www.ninenik.com',
+                                    'https://www.coe.or.th',
                                     new AreaBuilder(520,0,520,699)
                                     )
                             ));
