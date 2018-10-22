@@ -352,8 +352,8 @@ if(!is_null($events)){
         }
     }
 }
-//$response = $bot->replyMessage($replyToken,$replyData);
-$response = $bot->replyMessage($event->getReplyToken(), $outputText);
+$response = $bot->replyMessage($replyToken,$replyData);
+//$response = $bot->replyMessage($event->getReplyToken(), $outputText);
 if ($response->isSucceeded()) {
     echo 'Succeeded!';
     return;
