@@ -1,8 +1,8 @@
 <?php
 // กรณีต้องการตรวจสอบการแจ้ง error ให้เปิด 3 บรรทัดล่างนี้ให้ทำงาน กรณีไม่ ให้ comment ปิดไป
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // include composer autoload
 require_once 'vendor/autoload.php';
@@ -17,9 +17,9 @@ require_once 'bot_settings.php';
 use LINE\LINEBot;
 use LINE\LINEBot\HTTPClient;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
-use LINE\LINEBot\Event;
-use LINE\LINEBot\Event\BaseEvent;
-use LINE\LINEBot\Event\MessageEvent;
+//use LINE\LINEBot\Event;
+//use LINE\LINEBot\Event\BaseEvent;
+//use LINE\LINEBot\Event\MessageEvent;
 use LINE\LINEBot\MessageBuilder;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use LINE\LINEBot\MessageBuilder\StickerMessageBuilder;
@@ -332,7 +332,7 @@ if(!is_null($events)){
                     				$columns[] = $column;
                     			}
                     			$carousel = new CarouselTemplateBuilder($columns);
-                    			$outputText = new TemplateMessageBuilder("Carousel Demo", $carousel);
+                    			$replyData = new TemplateMessageBuilder("Carousel Demo", $carousel);
                     			break;
 
                     default:
@@ -352,8 +352,8 @@ if(!is_null($events)){
         }
     }
 }
-$response = $bot->replyMessage($replyToken,$replyData);
-//$response = $bot->replyMessage(@$replyToken->getReplyToken(), $replyData);
+//$response = $bot->replyMessage($replyToken,$replyData);
+$response = $bot->replyMessage($event->getReplyToken(), $outputText);
 if ($response->isSucceeded()) {
     echo 'Succeeded!';
     return;
