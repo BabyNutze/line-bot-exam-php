@@ -106,14 +106,17 @@ if(!is_null($events)){
                         $textReplyMessage = "สวัสดี Bot ไงจะใครหละ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
+
                     case "ทำอะไรได้มั่ง":
                        $textReplyMessage = "รุก ไซร้ ชัก ไม่รีบ";
                        $replyData = new TextMessageBuilder($textReplyMessage);
                        break;
+
                     case "เริ่มฉลาดแล้ว":
                       $textReplyMessage = "เราเก่งไง";
                       $replyData = new TextMessageBuilder($textReplyMessage);
                       break;
+
                     case  "ผลบอล":
                       $picFullSize = 'https://enigmatic-scrubland-34657.herokuapp.com/images/1360627.jpg';
                       $picThumbnail = 'https://enigmatic-scrubland-34657.herokuapp.com/images/1360627_tn.jpg';
@@ -328,10 +331,6 @@ if(!is_null($events)){
                         break;
                 }
                 break;
-
-
-
-
             default:
                 $textReplyMessage = json_encode($events);
                 $replyData = new TextMessageBuilder($textReplyMessage);
