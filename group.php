@@ -320,20 +320,7 @@ if(!is_null($events)){
                             )
                         );
                         break;
-                    case "carousel" :
-                    			$columns = array();
-                    			$img_url = "https://cdn.shopify.com/s/files/1/0379/7669/products/sampleset2_1024x1024.JPG?v=1458740363";
-                    			for($i=0;$i<5;$i++) {
-                    				$actions = array(
-                    					new PostbackTemplateActionBuilder("me","action=carousel&button=".$i),
-                    					new UriTemplateActionBuilder("View","http://www.coe.or.th")
-                    				);
-                    				$column = new CarouselColumnTemplateBuilder("รูปภาพ", "โลโก้สภาวิศวกร", $img_url , $actions);
-                    				$columns[] = $column;
-                    			}
-                    			$carousel = new CarouselTemplateBuilder($columns);
-                    			$replyData = new TemplateMessageBuilder("Carousel Demo", $carousel);
-                    			break;
+
 
                     default:
                         $textReplyMessage = "เสือก";
@@ -353,7 +340,6 @@ if(!is_null($events)){
     }
 }
 $response = $bot->replyMessage($replyToken,$replyData);
-//$response = $bot->replyMessage($event->getReplyToken(), $outputText);
 if ($response->isSucceeded()) {
     echo 'Succeeded!';
     return;
