@@ -303,17 +303,17 @@ if(!is_null($events)){
                             new ImageCarouselTemplateBuilder(
                                 array(
                                     new ImageCarouselColumnTemplateBuilder(
-                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        'https://enigmatic-scrubland-34657.herokuapp.com/images/fb.jpg',
                                         new UriTemplateActionBuilder(
                                             'Uri Template', // ข้อความแสดงในปุ่ม
-                                            'https://www.ninenik.com'
+                                            'https://www.facebook.com/coethai'
                                         )
                                     ),
                                     new ImageCarouselColumnTemplateBuilder(
-                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif',
                                         new UriTemplateActionBuilder(
-                                            'Uri Template', // ข้อความแสดงในปุ่ม
-                                            'https://www.ninenik.com'
+                                            'เว็บไซต์สภาวิศวกร', // ข้อความแสดงในปุ่ม
+                                            'https://www.coe.or.th'
                                         )
                                     )
                                 )
@@ -326,8 +326,7 @@ if(!is_null($events)){
                         $textReplyMessage = "เสือก";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
-                }
-                break;
+
             default:
                 $textReplyMessage = json_encode($events);
                 $replyData = new TextMessageBuilder($textReplyMessage);
