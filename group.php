@@ -352,13 +352,13 @@ if(!is_null($events)){
         }
     }
 }
-//$response = $bot->replyMessage($replyToken,$replyData);
-$response = $bot->replyMessage(@$replyToken->getReplyToken(), $replyData);
+$response = $bot->replyMessage($replyToken,$replyData);
+//$response = $bot->replyMessage(@$replyToken->getReplyToken(), $replyData);
 if ($response->isSucceeded()) {
     echo 'Succeeded!';
     return;
 }
 
 // Failed
-//echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 ?>
