@@ -130,7 +130,7 @@ if(!is_null($events)){
                         $replyData = new AudioMessageBuilder($audioUrl,20000);
                         break;
                     case "l" || "location" || "ที่ตั้ง":
-                            $placeName = "ตำแหน่งที่ตั้งสภาวิศวกร";
+                        $placeName = "ตำแหน่งที่ตั้งสภาวิศวกร";
                         $placeAddress = "487/1 ซอยรามคำแหง 39 แขวงพลับพลา เขตวังทองหลาง กรุงเทพมหานคร ประเทศไทย";
                         $latitude = 13.76363767;
                         $longitude = 100.60656106;
@@ -226,7 +226,7 @@ if(!is_null($events)){
     //                          'Postback Text'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                         );
-                        $imageUrl = 'https://www.mywebsite.com/imgsrc/photos/w/simpleflower';
+                        $imageUrl = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif';
                         $replyData = new TemplateMessageBuilder('Button Template',
                             new ButtonTemplateBuilder(
                                     'button template builder', // กำหนดหัวเรื่อง
@@ -279,19 +279,19 @@ if(!is_null($events)){
                                     new CarouselColumnTemplateBuilder(
                                         'Title Carousel',
                                         'Description Carousel',
-                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif',
                                         $actionBuilder
                                     ),
                                     new CarouselColumnTemplateBuilder(
                                         'Title Carousel',
                                         'Description Carousel',
-                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif',
                                         $actionBuilder
                                     ),
                                     new CarouselColumnTemplateBuilder(
                                         'Title Carousel',
                                         'Description Carousel',
-                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif',
                                         $actionBuilder
                                     ),
                                 )
@@ -303,17 +303,17 @@ if(!is_null($events)){
                             new ImageCarouselTemplateBuilder(
                                 array(
                                     new ImageCarouselColumnTemplateBuilder(
-                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif',
                                         new UriTemplateActionBuilder(
-                                            'Uri Template', // ข้อความแสดงในปุ่ม
+                                            'เว็บไซต์สภาวิศวกร', // ข้อความแสดงในปุ่ม
                                             'https://www.coe.or.th'
                                         )
                                     ),
                                     new ImageCarouselColumnTemplateBuilder(
-                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        'https://enigmatic-scrubland-34657.herokuapp.com/images/fb.jpg';
                                         new UriTemplateActionBuilder(
                                             'Uri Template', // ข้อความแสดงในปุ่ม
-                                            'https://www.coe.or.th'
+                                            'https://facebook.com/coethai'
                                         )
                                     )
                                 )
