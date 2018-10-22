@@ -129,10 +129,7 @@ if(!is_null($events)){
                         $videoUrl = "https://www.ninenik.com/line/simplevideo.mp4";
                         $replyData = new VideoMessageBuilder($videoUrl,$picThumbnail);
                         break;
-                    case "a":
-                        $audioUrl = "https://www.ninenik.com/line/S_6988827932080.wav";
-                        $replyData = new AudioMessageBuilder($audioUrl,20000);
-                        break;
+
                     case "ที่ตั้ง":
                         $placeName = "ตำแหน่งตำแหน่งที่ตั้งสภาวิศวกร";
                         $placeAddress = "487/1 ซอยรามคำแหง 39 แขวงพลับพลา เขตวังทองหลาง กรุงเทพมหานคร ประเทศไทย";
@@ -140,12 +137,12 @@ if(!is_null($events)){
                         $longitude = 100.61141967773438;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);
                         break;
-                    case "m":
-                        $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
+                    case "สภาวิศกร":
+                        $textReplyMessage = "สภาวิศกรยินดีให้บริการ";
                         $textMessage = new TextMessageBuilder($textReplyMessage);
 
-                        $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
-                        $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
+                        $picFullSize = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif';
+                        $picThumbnail = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit_tn.jpg';
                         $imageMessage = new ImageMessageBuilder($picFullSize,$picThumbnail);
 
                         $placeName = "ที่ตั้งร้าน";
