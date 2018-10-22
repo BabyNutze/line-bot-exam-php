@@ -193,7 +193,7 @@ if(!is_null($events)){
     //                          'Postback Text'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                         );
-                        $imageUrl = 'https://www.mywebsite.com/imgsrc/photos/w/simpleflower';
+                        $imageUrl = 'https://enigmatic-scrubland-34657.herokuapp.com/images/fb.jpg';
                         $replyData = new TemplateMessageBuilder('Button Template',
                             new ButtonTemplateBuilder(
                                     'button template builder', // กำหนดหัวเรื่อง
