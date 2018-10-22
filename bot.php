@@ -55,113 +55,146 @@ $bot = new LINEBot($httpClient, array('channelSecret' => LINE_MESSAGE_CHANNEL_SE
 // คำสั่งรอรับการส่งค่ามาของ LINE Messaging API
 $content = file_get_contents('php://input');
 
-// กำหนดค่า signature สำหรับตรวจสอบข้อมูลที่ส่งมาว่าเป็นข้อมูลจาก LINE
-$hash = hash_hmac('sha256', $content, LINE_MESSAGE_CHANNEL_SECRET, true);
-$signature = base64_encode($hash);
-
-// แปลงค่าข้อมูลที่ได้รับจาก LINE เป็น array ของ Event Object
-$events = $bot->parseEventRequest($content, $signature);
-$eventObj = $events[0]; // Event Object ของ array แรก
-
-// ดึงค่าประเภทของ Event มาไว้ในตัวแปร มีทั้งหมด 7 event
-$eventType = $eventObj->getType();
-
-// สร้างตัวแปร ไว้เก็บ sourceId ของแต่ละประเภท
-$userId = NULL;
-$groupId = NULL;
-$roomId = NULL;
-// สร้างตัวแปร replyToken สำหรับกรณีใช้ตอบกลับข้อความ
-$replyToken = NULL;
-// สร้างตัวแปร ไว้เก็บค่าว่าเป้น Event ประเภทไหน
-$eventMessage = NULL;
-$eventPostback = NULL;
-$eventJoin = NULL;
-$eventLeave = NULL;
-$eventFollow = NULL;
-$eventUnfollow = NULL;
-$eventBeacon = NULL;
-// เงื่อนไขการกำหนดประเภท Event
-switch($eventType){
-    case 'message': $eventMessage = true; break;
-    case 'postback': $eventPostback = true; break;
-    case 'join': $eventJoin = true; break;
-    case 'leave': $eventLeave = true; break;
-    case 'follow': $eventFollow = true; break;
-    case 'unfollow': $eventUnfollow = true; break;
-    case 'beacon': $eventBeacon = true; break;
+// แปลงข้อความรูปแบบ JSON  ให้อยู่ในโครงสร้างตัวแปร array
+$events = json_decode($content, true);
+{
+  "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+  "type": "join",
+  "timestamp": 1462629479859,
+  "source": {
+    "type": "group",
+    "groupId": "C4af4980629..."
+  }
 }
-// สร้างตัวแปรเก็บค่า groupId กรณีเป็น Event ที่เกิดขึ้นใน GROUP
-if($eventObj->isGroupEvent()){
-    $groupId = $eventObj->getGroupId();
-}
-// สร้างตัวแปรเก็บค่า roomId กรณีเป็น Event ที่เกิดขึ้นใน ROOM
-if($eventObj->isRoomEvent()){
-    $roomId = $eventObj->getRoomId();
-}
-// ดึงค่า replyToken มาไว้ใช้งาน ทุกๆ Event ที่ไม่ใช่ Leave และ Unfollow Event
-if(is_null($eventLeave) && is_null($eventUnfollow)){
-    $replyToken = $eventObj->getReplyToken();
-}
-// ดึงค่า userId มาไว้ใช้งาน ทุกๆ Event ที่ไม่ใช่ Leave Event
-if(is_null($eventLeave)){
-    $userId = $eventObj->getUserId();
-}
-// ตรวจสอบถ้าเป็น Join Event ให้ bot ส่งข้อความใน GROUP ว่าเข้าร่วม GROUP แล้ว
-if(!is_null($eventJoin)){
-    $textReplyMessage = "ขอเข้ากลุ่มด้วยน่ะ GROUP ID:: ".$groupId;
-    $replyData = new TextMessageBuilder($textReplyMessage);
-}
-// ตรวจสอบถ้าเป็น Leave Event เมื่อ bot ออกจากกลุ่ม
-if(!is_null($eventLeave)){
-
-}
-// ตรวจสอบถ้าเป้น Message Event และกำหนดค่าตัวแปรต่างๆ
-if(!is_null($eventMessage)){
-    // สร้างตัวแปรเก็ยค่าประเภทของ Message จากทั้งหมด 8 ประเภท
-    $typeMessage = $eventObj->getMessageType();
-    //  text | image | sticker | location | audio | video | imagemap | template
-    // ถ้าเป็นข้อความ
-    if($typeMessage=='text'){
-        $userMessage = $eventObj->getText(); // เก็บค่าข้อความที่ผู้ใช้พิมพ์
-    }
-    // ถ้าเป็น sticker
-    if($typeMessage=='sticker'){
-        $packageId = $eventObj->getPackageId();
-        $stickerId = $eventObj->getStickerId();
-    }
-    // ถ้าเป็น location
-    if($typeMessage=='location'){
-        $locationTitle = $eventObj->getTitle();
-        $locationAddress = $eventObj->getAddress();
-        $locationLatitude = $eventObj->getLatitude();
-        $locationLongitude = $eventObj->getLongitude();
-    }
-    // เก็บค่า id ของข้อความ
-    $idMessage = $eventObj->getMessageId();
-}
-
-// ส่วนของการทำงาน
 if(!is_null($events)){
-    // ถ้าเป็น Postback Event
-    if(!is_null($eventPostback)){
+    // ถ้ามีค่า สร้างตัวแปรเก็บ replyToken ไว้ใช้งาน
+    $replyToken = $events['events'][0]['replyToken'];
+    $userID = $events['events'][0]['source']['userId'];
+    $sourceType = $events['events'][0]['source']['type'];
+    $is_postback = NULL;
+    $is_message = NULL;
+    if(isset($events['events'][0]) && array_key_exists('message',$events['events'][0])){
+        $is_message = true;
+        $typeMessage = $events['events'][0]['message']['type'];
+        $userMessage = $events['events'][0]['message']['text'];
+        $idMessage = $events['events'][0]['message']['id'];
+    }
+    if(isset($events['events'][0]) && array_key_exists('postback',$events['events'][0])){
+        $is_postback = true;
         $dataPostback = NULL;
+        parse_str($events['events'][0]['postback']['data'],$dataPostback);;
         $paramPostback = NULL;
-        // แปลงข้อมูลจาก Postback Data เป็น array
-        parse_str($eventObj->getPostbackData(),$dataPostback);
-        // ดึงค่า params กรณีมีค่า params
-        $paramPostback = $eventObj->getPostbackParams();
-        // ทดสอบแสดงข้อความที่เกิดจาก Postaback Event
+        if(array_key_exists('params',$events['events'][0]['postback'])){
+            if(array_key_exists('date',$events['events'][0]['postback']['params'])){
+                $paramPostback = $events['events'][0]['postback']['params']['date'];
+            }
+            if(array_key_exists('time',$events['events'][0]['postback']['params'])){
+                $paramPostback = $events['events'][0]['postback']['params']['time'];
+            }
+            if(array_key_exists('datetime',$events['events'][0]['postback']['params'])){
+                $paramPostback = $events['events'][0]['postback']['params']['datetime'];
+            }
+        }
+    }
+    if(!is_null($is_postback)){
         $textReplyMessage = "ข้อความจาก Postback Event Data = ";
-        $textReplyMessage.= json_encode($dataPostback);
-        $textReplyMessage.= json_encode($paramPostback);
+        if(is_array($dataPostback)){
+            $textReplyMessage.= json_encode($dataPostback);
+        }
+        if(!is_null($paramPostback)){
+            $textReplyMessage.= " \r\nParams = ".$paramPostback;
+        }
         $replyData = new TextMessageBuilder($textReplyMessage);
     }
-    // ถ้าเป้น Message Event
-    if(!is_null($eventMessage)){
-        switch ($typeMessage){ // กำหนดเงื่อนไขการทำงานจาก ประเภทของ message
-            case 'text':  // ถ้าเป็นข้อความ
+    if(!is_null($is_message)){
+        switch ($typeMessage){
+            case 'text':
                 $userMessage = strtolower($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
+                    case "hi" || "สวัสดี" || "ดีจ้า" || "ดีจ้าา":
+                        $textReplyMessage = "สวัสดีครับ";
+                        $replyData = new TextMessageBuilder($textReplyMessage);
+                        break;
+                    case "i":
+                    $picFullSize = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif';
+                    $picThumbnail = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit_tn.jpg';
+                        $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
+                        break;
+                    case "v":
+                        $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/240';
+                        $videoUrl = "https://www.ninenik.com/line/simplevideo.mp4";
+                        $replyData = new VideoMessageBuilder($videoUrl,$picThumbnail);
+                        break;
+                    case "a":
+                        $audioUrl = "https://www.ninenik.com/line/S_6988827932080.wav";
+                        $replyData = new AudioMessageBuilder($audioUrl,20000);
+                        break;
+                    case "l" || "location" || "ที่ตั้ง":
+                            $placeName = "ตำแหน่งที่ตั้งสภาวิศวกร";
+                        $placeAddress = "487/1 ซอยรามคำแหง 39 แขวงพลับพลา เขตวังทองหลาง กรุงเทพมหานคร ประเทศไทย";
+                        $latitude = 13.76363767;
+                        $longitude = 100.60656106;
+                        $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);
+                        break;
+                    case "m":
+                        $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
+                        $textMessage = new TextMessageBuilder($textReplyMessage);
+
+                        $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
+                        $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
+                        $imageMessage = new ImageMessageBuilder($picFullSize,$picThumbnail);
+
+                        $placeName = "ที่ตั้งร้าน";
+                        $placeAddress = "แขวง พลับพลา เขต วังทองหลาง กรุงเทพมหานคร ประเทศไทย";
+                        $latitude = 13.76363767;
+                        $longitude = 100.60656106;
+                        $locationMessage = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);
+
+                        $multiMessage =     new MultiMessageBuilder;
+                        $multiMessage->add($textMessage);
+                        $multiMessage->add($imageMessage);
+                        $multiMessage->add($locationMessage);
+                        $replyData = $multiMessage;
+                        break;
+                    case "s":
+                        $stickerID = 22;
+                        $packageID = 2;
+                        $replyData = new StickerMessageBuilder($packageID,$stickerID);
+                        break;
+                    case "im":
+                        $imageMapUrl = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif';
+                        $replyData = new ImagemapMessageBuilder(
+                            $imageMapUrl,
+                            'This is Title',
+                            new BaseSizeBuilder(699,1040),
+                            array(
+                                new ImagemapMessageActionBuilder(
+                                    'test image map',
+                                    new AreaBuilder(0,0,520,699)
+                                    ),
+                                new ImagemapUriActionBuilder(
+                                    'http://www.ninenik.com',
+                                    new AreaBuilder(520,0,520,699)
+                                    )
+                            ));
+                        break;
+                    case "tm":
+                        $replyData = new TemplateMessageBuilder('Confirm Template',
+                            new ConfirmTemplateBuilder(
+                                    'Confirm template builder',
+                                    array(
+                                        new MessageTemplateActionBuilder(
+                                            'Yes',
+                                            'Text Yes'
+                                        ),
+                                        new MessageTemplateActionBuilder(
+                                            'No',
+                                            'Text NO'
+                                        )
+                                    )
+                            )
+                        );
+                        break;
                     case "t_b":
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
@@ -193,7 +226,7 @@ if(!is_null($events)){
     //                          'Postback Text'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                         );
-                        $imageUrl = 'https://enigmatic-scrubland-34657.herokuapp.com/images/fb.jpg';
+                        $imageUrl = 'https://www.mywebsite.com/imgsrc/photos/w/simpleflower';
                         $replyData = new TemplateMessageBuilder('Button Template',
                             new ButtonTemplateBuilder(
                                     'button template builder', // กำหนดหัวเรื่อง
@@ -203,60 +236,113 @@ if(!is_null($events)){
                             )
                         );
                         break;
-                    case "p":
-                            if(!is_null($groupId) || !is_null($roomId)){
-                                if($eventObj->isGroupEvent()){
-                                    $response = $bot->getGroupMemberProfile($groupId, $userId);
-                                }
-                                if($eventObj->isRoomEvent()){
-                                    $response = $bot->getRoomMemberProfile($roomId, $userId);
-                                }
-                            }else{
-                                $response = $bot->getProfile($userId);
-                            }
-                            if ($response->isSucceeded()) {
-                                $userData = $response->getJSONDecodedBody(); // return array
-                                // $userData['userId']
-                                // $userData['displayName']
-                                // $userData['pictureUrl']
-                                // $userData['statusMessage']
-                                $textReplyMessage = 'สวัสดีครับ คุณ '.$userData['displayName'];
-                            }else{
-                                $textReplyMessage = 'สวัสดีครับ คุณคือใคร';
-                            }
-                            $replyData = new TextMessageBuilder($textReplyMessage);
+                    case "t_f":
+                        $replyData = new TemplateMessageBuilder('ยืนยัน',
+                            new ConfirmTemplateBuilder(
+                                    'คุณเป็นสมาชิกสภาวิศวกรใช่ไหม', // ข้อความแนะนหรือบอกวิธีการ หรือคำอธิบาย
+                                    array(
+                                        new MessageTemplateActionBuilder(
+                                            'Yes', // ข้อความสำหรับปุ่มแรก
+                                            'YES'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                        ),
+                                        new MessageTemplateActionBuilder(
+                                            'No', // ข้อความสำหรับปุ่มแรก
+                                            'NO' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                        )
+                                    )
+                            )
+                        );
                         break;
-                    case "l": // เงื่อนไขทดสอบถ้ามีใครพิมพ์ L ใน GROUP / ROOM แล้วให้ bot ออกจาก GROUP / ROOM
-                            $sourceId = $eventObj->getEventSourceId();
-                            if($eventObj->isGroupEvent()){
-                                $bot->leaveGroup($sourceId);
-                            }
-                            if($eventObj->isRoomEvent()){
-                                $bot->leaveRoom($sourceId);
-                            }
-                            $textReplyMessage = 'เชิญ bot ออกจาก Group / Room';
-                            $replyData = new TextMessageBuilder($textReplyMessage);
+                    case "t_c":
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'Message Template',// ข้อความแสดงในปุ่ม
+                                'This is Text' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new UriTemplateActionBuilder(
+                                'Uri Template', // ข้อความแสดงในปุ่ม
+                                'https://www.ninenik.com'
+                            ),
+                            new PostbackTemplateActionBuilder(
+                                'Postback', // ข้อความแสดงในปุ่ม
+                                http_build_query(array(
+                                    'action'=>'buy',
+                                    'item'=>100
+                                )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
+                                'Postback Text'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                        );
+                        $replyData = new TemplateMessageBuilder('Carousel',
+                            new CarouselTemplateBuilder(
+                                array(
+                                    new CarouselColumnTemplateBuilder(
+                                        'Title Carousel',
+                                        'Description Carousel',
+                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        $actionBuilder
+                                    ),
+                                    new CarouselColumnTemplateBuilder(
+                                        'Title Carousel',
+                                        'Description Carousel',
+                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        $actionBuilder
+                                    ),
+                                    new CarouselColumnTemplateBuilder(
+                                        'Title Carousel',
+                                        'Description Carousel',
+                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        $actionBuilder
+                                    ),
+                                )
+                            )
+                        );
                         break;
-                    default:
+                    case "t_ic":
+                        $replyData = new TemplateMessageBuilder('Image Carousel',
+                            new ImageCarouselTemplateBuilder(
+                                array(
+                                    new ImageCarouselColumnTemplateBuilder(
+                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        new UriTemplateActionBuilder(
+                                            'Uri Template', // ข้อความแสดงในปุ่ม
+                                            'https://www.ninenik.com'
+                                        )
+                                    ),
+                                    new ImageCarouselColumnTemplateBuilder(
+                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        new UriTemplateActionBuilder(
+                                            'Uri Template', // ข้อความแสดงในปุ่ม
+                                            'https://www.ninenik.com'
+                                        )
+                                    )
+                                )
+                            )
+                        );
+                        break;
+                    case '-help':
+                      // code...
 
-                        $textReplyMessage = "เสือก";
+                      break;
+                    default:
+                        $textReplyMessage = "พิมพ์ -help เพื่อดูคำสั่งที่ใช้ได้";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
                 }
                 break;
             default:
-                // กรณีทดสอบเงื่อนไขอื่นๆ ผู้ใช้ไม่ได้ส่งเป็นข้อความ
-                $textReplyMessage = 'สวัสดีครับ คุณ '.$typeMessage;
+                $textReplyMessage = json_encode($events);
                 $replyData = new TextMessageBuilder($textReplyMessage);
                 break;
         }
     }
 }
-$response = $bot->replyMessage($replyToken,$replyData);
+$response = $bot->replyMessage(@$replyToken,@$replyData);
 if ($response->isSucceeded()) {
     echo 'Succeeded!';
     return;
 }
+
 // Failed
 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 ?>
