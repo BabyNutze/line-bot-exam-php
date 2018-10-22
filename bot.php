@@ -312,7 +312,7 @@ if(!is_null($events)){
                                     new ImageCarouselColumnTemplateBuilder(
                                         'https://enigmatic-scrubland-34657.herokuapp.com/images/fb.jpg';
                                         new UriTemplateActionBuilder(
-                                            'Uri Template', // ข้อความแสดงในปุ่ม
+                                            'เฟซบุคสภาวิศวกร', // ข้อความแสดงในปุ่ม
                                             'https://facebook.com/coethai'
                                         )
                                     )
