@@ -320,12 +320,12 @@ if(!is_null($events)){
                             )
                         );
                         break;
-                    case '-help':
+                    case 'help' || 'ช่วยเหลือ':
                       // code...
 
                       break;
                     default:
-                        $textReplyMessage = "พิมพ์ -help เพื่อดูคำสั่งที่ใช้ได้";
+                        $textReplyMessage = "พิมพ์ help เพื่อดูคำสั่งที่ใช้ได้";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
                 }
