@@ -238,7 +238,8 @@ if(!is_null($events)){
                             $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
                     default:
-                        $textReplyMessage = " คุณไม่ได้พิมพ์ ค่า ตามที่กำหนด";
+
+                        $textReplyMessage = "เสือก";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
                 }
