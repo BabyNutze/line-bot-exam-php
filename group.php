@@ -140,12 +140,12 @@ if(!is_null($events)){
                         $longitude = 100.61141967773438;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);
                         break;
-                    case "m":
+                    case "m" || "mn":
                         $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
                         $textMessage = new TextMessageBuilder($textReplyMessage);
 
-                        $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
-                        $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
+                        $picFullSize = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit.gif';
+                        $picThumbnail = 'https://enigmatic-scrubland-34657.herokuapp.com/images/COELOGO-edit_tn.jpg';
                         $imageMessage = new ImageMessageBuilder($picFullSize,$picThumbnail);
 
                         $placeName = "ที่ตั้งร้าน";
