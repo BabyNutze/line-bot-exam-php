@@ -133,7 +133,7 @@ if(!is_null($events)){
                         $audioUrl = "https://enigmatic-scrubland-34657.herokuapp.com/MarioInTrouble.wav";
                         $replyData = new AudioMessageBuilder($audioUrl,20000);
                         break;
-                    case "ที่ตั้ง" || "อยู่ไหน":
+                    case "ที่ตั้ง" | | "อยู่ไหน":
                         $placeName = "ตำแหน่งตำแหน่งที่ตั้งสภาวิศวกร";
                         $placeAddress = "487/1 ซอยรามคำแหง 39 แขวงพลับพลา เขตวังทองหลาง กรุงเทพมหานคร ประเทศไทย";
                         $latitude = 13.780401863217657;
