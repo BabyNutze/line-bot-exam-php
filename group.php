@@ -140,7 +140,7 @@ if(!is_null($events)){
                         $longitude = 100.61141967773438;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);
                         break;
-                    case ("m" || "mn"):
+                    case  "mn":
                         $textReplyMessage = "Hello";
                         $textMessage = new TextMessageBuilder($textReplyMessage);
 
