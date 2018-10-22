@@ -179,17 +179,17 @@ if(!is_null($events)){
                             ));
                         break;
                     case "tm":
-                        $replyData = new TemplateMessageBuilder('Confirm Template',
+                        $replyData = new TemplateMessageBuilder('คุณเป็นสมาชิกสภาวิศวกรใช่ไหม',
                             new ConfirmTemplateBuilder(
                                     'Confirm template builder',
                                     array(
                                         new MessageTemplateActionBuilder(
-                                            'Yes',
-                                            'Text Yes'
+                                            'ใช่',
+                                            'ขอบคุณครับ'
                                         ),
                                         new MessageTemplateActionBuilder(
-                                            'No',
-                                            'Text NO'
+                                            'ไม่ใช่',
+                                            'คุณสามารถรับข่าวสารสภาวิศวกรที่ line @coethai'
                                         )
                                     )
                             )
@@ -204,7 +204,7 @@ if(!is_null($events)){
                             ),
                             new UriTemplateActionBuilder(
                                 'Uri Template', // ข้อความแสดงในปุ่ม
-                                'https://www.ninenik.com'
+                                'https://www.coe.or.th'
                             ),
                             new DatetimePickerTemplateActionBuilder(
                                 'Datetime Picker', // ข้อความแสดงในปุ่ม
@@ -242,11 +242,11 @@ if(!is_null($events)){
                                     'คุณเป็นสมาชิกสภาวิศวกรใช่ไหม', // ข้อความแนะนหรือบอกวิธีการ หรือคำอธิบาย
                                     array(
                                         new MessageTemplateActionBuilder(
-                                            'Yes', // ข้อความสำหรับปุ่มแรก
+                                            'ใช่', // ข้อความสำหรับปุ่มแรก
                                             'YES'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                                         ),
                                         new MessageTemplateActionBuilder(
-                                            'No', // ข้อความสำหรับปุ่มแรก
+                                            'ไม่ใช่', // ข้อความสำหรับปุ่มแรก
                                             'NO' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                                         )
                                     )
@@ -261,8 +261,8 @@ if(!is_null($events)){
                                 'This is Text' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                             new UriTemplateActionBuilder(
-                                'Uri Template', // ข้อความแสดงในปุ่ม
-                                'https://www.ninenik.com'
+                                '', // ข้อความแสดงในปุ่ม
+                                'https://www.coe.or.th'
                             ),
                             new PostbackTemplateActionBuilder(
                                 'Postback', // ข้อความแสดงในปุ่ม
@@ -306,14 +306,14 @@ if(!is_null($events)){
                                         'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
                                         new UriTemplateActionBuilder(
                                             'Uri Template', // ข้อความแสดงในปุ่ม
-                                            'https://www.ninenik.com'
+                                            'https://www.coe.or.th'
                                         )
                                     ),
                                     new ImageCarouselColumnTemplateBuilder(
                                         'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
                                         new UriTemplateActionBuilder(
                                             'Uri Template', // ข้อความแสดงในปุ่ม
-                                            'https://www.ninenik.com'
+                                            'https://www.coe.or.th'
                                         )
                                     )
                                 )
