@@ -270,7 +270,7 @@ if(!is_null($events)){
                                     'action'=>'buy',
                                     'item'=>100
                                 )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
-                                'Postback Text'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                'ขอบคุณ'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                         );
                         $replyData = new TemplateMessageBuilder('Carousel',
