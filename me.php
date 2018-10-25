@@ -1,6 +1,6 @@
 <!doctype html>
 <?php
-$mysqli = new mysqli("203.151.145.146", "me","","meeting");  
+$mysqli = new mysqli("203.151.145.146", "root","","meeting");  
 /* check connection */
 if ($mysqli->connect_errno) {
     printf("Connect failed: %s\n", $mysqli->connect_error);
