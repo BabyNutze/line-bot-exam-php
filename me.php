@@ -1,6 +1,6 @@
 <!doctype html>
 <?php
-/*
+
 $mysqli = new mysqli("203.151.145.146", "root","","meeting");
 if ($mysqli->connect_errno) {
     printf("Connect failed: %s\n", $mysqli->connect_error);
@@ -10,7 +10,7 @@ if(!$mysqli->set_charset("utf8")) {
     printf("Error loading character set utf8: %s\n", $mysqli->error);
     exit();
 }
-*/
+
 ?>
 <html lang="en">
   <head>
