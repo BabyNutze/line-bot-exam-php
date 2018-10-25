@@ -24,7 +24,7 @@ if(!$mysqli->set_charset("utf8")) {
     <title>ME</title>
   </head>
   <body>
-    <h1></h1>
+    <h1>MY</h1>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
