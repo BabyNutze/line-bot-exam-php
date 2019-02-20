@@ -27,7 +27,7 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ฉันทำอะไรไม่ได้เลย คุณต้องสอนฉันอีกเยอะ";
-}else if($arrJson['events'][0]['message']['text'] == "รูปน้องแมว"){
+}else if($arrJson['events'][0]['message']['text'] == "แมว"){
   $image_url = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
   $arrayPostData = array();
   $arrayPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
