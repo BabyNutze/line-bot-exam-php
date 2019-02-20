@@ -17,17 +17,23 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "สวัสดี ID คุณคือ ".$arrJson['events'][0]['source']['userId'];
 
-}else if($arrJson['events'][0]['message']['text'] == "ชื่ออะไร"){
+}
+
+else if($arrJson['events'][0]['message']['text'] == "ชื่ออะไร"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "ฉันยังไม่มีชื่อนะ";
-}else if($arrJson['events'][0]['message']['text'] == "ทำอะไรได้บ้าง"){
+  $arrPostData['messages'][0]['text'] = "บอทไง";
+}
+
+else if($arrJson['events'][0]['message']['text'] == "ทำอะไรได้บ้าง"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ฉันทำอะไรไม่ได้เลย คุณต้องสอนฉันอีกเยอะ";
-}else if($arrJson['events'][0]['message']['text'] == "แมว"){
+}
+
+else if($arrJson['events'][0]['message']['text'] == "แมว"){
   $image_url = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
   $arrayPostData = array();
   $arrayPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
@@ -49,7 +55,7 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
 }
 #ตัวอย่าง Message Type "Text + Sticker ใน 1 ครั้ง"
 }else if($arrJson['events'][0]['message']['text'] == "ลาก่อน" || $arrJson['events'][0]['message']['text'] == "บาย"){
-        $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+        $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "text";
         $arrayPostData['messages'][0]['text'] = "อย่าทิ้งกันไป";
         $arrayPostData['messages'][1]['type'] = "sticker";
@@ -57,6 +63,7 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
         $arrayPostData['messages'][1]['stickerId'] = "131";
         replyMsg($arrayHeader,$arrayPostData);
     }
+
 else{
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
