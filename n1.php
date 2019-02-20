@@ -43,7 +43,7 @@ else if($arrJson['events'][0]['message']['text'] == "แมว"){
 
 }
 #ตัวอย่าง Message Type "Location"
-}else if($arrJson['events'][0]['message']['text'] == "พารากอน"){
+else if($arrJson['events'][0]['message']['text'] == "พารากอน"){
     $arrayPostData = array();
     $arrayPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
     $arrayPostData['messages'][0]['type'] = "location";
@@ -54,7 +54,7 @@ else if($arrJson['events'][0]['message']['text'] == "แมว"){
     replyMsg($arrayHeader,$arrayPostData);
 }
 #ตัวอย่าง Message Type "Text + Sticker ใน 1 ครั้ง"
-}else if($arrJson['events'][0]['message']['text'] == "ลาก่อน" || $arrJson['events'][0]['message']['text'] == "บาย"){
+else if($arrJson['events'][0]['message']['text'] == "ลาก่อน" || $arrJson['events'][0]['message']['text'] == "บาย"){
         $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "text";
         $arrayPostData['messages'][0]['text'] = "อย่าทิ้งกันไป";
