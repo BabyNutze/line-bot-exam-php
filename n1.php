@@ -36,7 +36,27 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrayPostData['messages'][0]['previewImageUrl'] = $image_url;
 
 }
-
+#ตัวอย่าง Message Type "Location"
+}else if($arrJson['events'][0]['message']['text'] == "พารากอน"){
+    $arrayPostData = array();
+    $arrayPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+    $arrayPostData['messages'][0]['type'] = "location";
+    $arrayPostData['messages'][0]['title'] = "สยามพารากอน";
+    $arrayPostData['messages'][0]['address'] =   "13.7465354,100.532752";
+    $arrayPostData['messages'][0]['latitude'] = "13.7465354";
+    $arrayPostData['messages'][0]['longitude'] = "100.532752";
+    replyMsg($arrayHeader,$arrayPostData);
+}
+#ตัวอย่าง Message Type "Text + Sticker ใน 1 ครั้ง"
+}else if($arrJson['events'][0]['message']['text'] == "ลาก่อน" || $arrJson['events'][0]['message']['text'] == "บาย"){
+        $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+        $arrayPostData['messages'][0]['type'] = "text";
+        $arrayPostData['messages'][0]['text'] = "อย่าทิ้งกันไป";
+        $arrayPostData['messages'][1]['type'] = "sticker";
+        $arrayPostData['messages'][1]['packageId'] = "1";
+        $arrayPostData['messages'][1]['stickerId'] = "131";
+        replyMsg($arrayHeader,$arrayPostData);
+    }
 else{
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
