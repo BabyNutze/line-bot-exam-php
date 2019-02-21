@@ -17,6 +17,14 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "สวัสดี ID คุณคือ ".$arrJson['events'][0]['source']['userId'];
 
+  $myfile = fopen("userid.txt", "w") or die("Unable to open file!");
+  $txt = $arrJson['events'][0]['source']['userId'] ."\n";
+  fwrite($myfile, $txt);
+  $txt = "Jane Doe\n";
+  fwrite($myfile, $txt);
+  fclose($myfile);
+
+
 }
 
 else if($arrJson['events'][0]['message']['text'] == "ชื่ออะไร"){
